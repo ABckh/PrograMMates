@@ -1,0 +1,115 @@
+{% extends "bulletin_board/index.html" %}
+
+
+{% block content %}
+
+
+<div class="right-sidebar" style="color: white;" >
+        <form method="GET">
+        <h1 style="color: white; padding-left:30%;">Filters</h1>
+        {% for f in ad_filters.form  %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label><br>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+
+<!--         {% for f in user_filters.form  %}-->
+<!--        <p><label class="form-label" style="display: inline-block; min-width: 150px; vertical-align: top; width: 300px;" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>-->
+<!--        <div class="form-error">{{ f.errors }}</div>-->
+<!--        {% endfor %}-->
+        <button class="button-18" role="button">Find</button>
+        </form>
+
+    </div>
+
+{% if message %}
+<div class="center" style="color: white">
+    <h1>{{ message }}</h1>
+    <p>{{ message_2 }}</p>
+</div>
+{% else %}
+
+    {% for ad in adverts %}
+
+      <div class="center" style="margin-top: 25px;">
+        <div id="inline">
+
+         <div class="one">
+             {% if user.is_authenticated %}
+                <a href="{{ ad.username.get_absolute_url }}" style="text-decoration: none;">
+                <div class="card" >
+                    <div class="image">
+                        {% if ad.username.photo %}
+                        <img src="{{ ad.username.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ ad.username }}</span>
+                        <span class="info">Language: {{ ad.username.language }}</span>
+                        <span class="info">Gender: {{ ad.username.gender }}</span>
+                    </div>
+                </div>
+                    </a>
+             {% else %}
+             <div class="card" >
+                    <div class="image">
+                        {% if ad.username.photo %}
+                        <img src="{{ ad.username.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ ad.username }}</span>
+                        <span class="info">Language: {{ ad.username.language }}</span>
+                        <span class="info">Gender: {{ ad.username.gender }}</span>
+                    </div>
+                </div>
+             {% endif %}
+
+            </div>
+
+
+            <div class="two"><h1 style="color:white; font-family: 'Rubik';">{{ ad.title }}</h1></div>
+        </div>
+          {% if user == ad.username %}
+            <p style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ ad.description }} </p>
+            <a href="{{ ad.get_edit_url }}">
+            <button class="button-17" role="button">Edit</button>
+             </a>
+          {% else %}
+        <div class="bottom">
+            <p style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ ad.description }} </p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'chat' username=ad.username %}">
+            <button class="button-17" role="button" >Contact</button>
+            </a>
+            {% else %}
+            <a href="{% url 'log_in' %}">
+            <button class="button-17" role="button">Contact</button>
+             </a>
+            {% endif %}
+        {% endif %}
+            <p style="color: grey">Date of publishing: {{ ad.dat_of_pub }}</p>
+        </div>
+    </div>
+
+{% endfor %}
+
+<div class="center" style="background-color: #0a94fc;">
+<div class="pagination">
+{% for p in paginator.page_range %}
+    {% if page_obj.number == p  %}
+        <a href="?page={{ p }}" class="active">{{ p }}</a>
+
+    {% else %}
+        <a href="?page={{ p }}">{{ p }}</a>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+</div>
+    </div>
+
+
+
+{% endblock %}

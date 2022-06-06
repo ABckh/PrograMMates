@@ -1,0 +1,46 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+{% block content %}
+
+{% if message %}
+<div class="center" style="color: white">
+    <h1>{{ message }}</h1>
+    <p>{{ message_2 }}</p>
+</div>
+{% else %}
+
+ <div class="center" style="margin-top: 25px">
+        <div id="inline">
+
+            <div class="one">
+    <a style="text-decoration: none;">                <div class="card" >
+                    <div class="image">
+                        {% if user.photo %}
+                        <img src="{{ user.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text">
+                        <span class="name" style="color:white;">{{ user.username }}</span>
+                        <span class="info">Language: {{ user.language }}</span>
+                        <span class="info">Gender: {{ user.gender }}</span>
+                    </div>
+                </div>
+                    </a>
+            </div>
+
+
+        </div>
+        <div class="bottom">
+            <h4 style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ user.information }} </h4>
+            <a href="{{ user.get_edit_url }}">
+            <button class="button-17" role="button">Edit</button>
+                </a>
+              <a href="{% url 'index' %}">
+            <button class="button-18" role="button">Home page</button>
+            </a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

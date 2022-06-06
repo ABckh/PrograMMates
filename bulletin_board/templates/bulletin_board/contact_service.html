@@ -1,0 +1,31 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+{% block content %}
+<div class="center" style="color:white">
+{% if message_name %}
+    <center>
+        <h2> Thanks {{ message_name }}</h2>
+        <p>We received your email and will respond shortly...</p>
+    </center>
+    <br><br><br><br><br>
+{% else %}
+
+
+    <h1>Contact Service</h1>
+    <form method="post">
+     {% csrf_token %}
+    {% for f in form %}
+    <p><label class="form-label" style="display: inline-block; min-width: 150px; vertical-align: top;" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+
+    {% endfor %}
+    <div class="bottom">
+            <button class="button-17" role="button" type="submit">Send</button>
+    </div>
+    </form>
+</div>
+
+{% endif %}
+
+{% endblock %}

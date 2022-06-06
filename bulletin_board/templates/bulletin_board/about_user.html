@@ -1,0 +1,76 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+{% block content %}
+            <div class="center" style="margin-top: 25px;">
+        <div id="inline">
+         <div class="one">
+
+                <div class="card" >
+                    <div class="image">
+                        <img src="{{ user.photo.url }}">
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ user }}</span>
+                        <span class="info">Language: {{ user.language }}</span>
+                        <span class="info">Gender: {{ user.gender }}</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="bottom">
+            <h4 style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ user.information }} </h4>
+            <a href="{{ user.get_contact_url }}">
+            <button class="button-17" role="button">Contact</button>
+                </a>
+              <a href="{% url 'index' %}">
+            <button class="button-18" role="button">Home page</button>
+            </a>
+        </div>
+      </div>
+
+<div class="center" style="margin-top: 25px;  background-color: #0a94fc;">
+    <h2 style="padding-left: 25%; padding-right:10%;">Adverts, which were published by {{ user }}:</h2>
+</div>
+
+
+
+
+{% for ad in adverts %}
+      <div class="center" style="margin-top: 25px;">
+        <div id="inline">
+         <div class="one">
+
+                <div class="card" >
+                    <div class="image">
+                        {% if ad.username.photo %}
+                        <img src="{{ ad.username.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ ad.username }}</span>
+                        <span class="info">Language: {{ ad.username.language }}</span>
+                        <span class="info">Gender: {{ ad.username.gender }}</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="two"><h1 style="color:white; font-family: 'Rubik';">{{ ad.title }}</h1></div>
+        </div>
+        <div class="bottom">
+            <p style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ ad.description }} </p>
+            <p style="color: grey">Date of publishing: {{ ad.dat_of_pub }}</p>
+        </div>
+    </div>
+
+{% endfor %}
+
+</div>
+
+
+{% endblock %}

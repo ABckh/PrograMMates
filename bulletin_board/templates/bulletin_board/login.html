@@ -1,0 +1,18 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+{% block content %}
+<div class="center" style="color:white">
+<form method="post" >
+<div class="form-error">{{ form.non_field_errors }}</div>
+    <h1>Log in</h1>
+{% csrf_token %}
+{% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+    <button class="button-17" role="button" type="submit">Log in</button>
+
+</form>
+    </div>
+{% endblock %}

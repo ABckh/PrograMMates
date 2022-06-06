@@ -1,0 +1,20 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+{% block content %}
+<div class="center" style="color: white;" >
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+    <h1>Registration</h1>
+ {% for f in form %}
+    <p><label class="form-label" style="display: inline-block; min-width: 150px; vertical-align: top;" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+
+    {% endfor %}
+
+
+
+ <button class="button-17" role="button" type="submit">Register</button>
+</form>
+</div>
+{% endblock %}

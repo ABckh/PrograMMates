@@ -1,0 +1,82 @@
+{% extends "bulletin_board/index.html" %}
+
+
+{% block content %}
+
+{% if message %}
+<div class="center" style="color: white">
+    <h1>{{ message }}</h1>
+    <p>{{ message_2 }}</p>
+</div>
+{% else %}
+
+
+    {% for ad in adverts %}
+
+      <div class="center" style="margin-top: 25px;">
+        <div id="inline">
+
+         <div class="one">
+                <a href="{{ ad.username.get_absolute_url }}" style="text-decoration: none;">
+                <div class="card" >
+                    <div class="image">
+                        {% if ad.username.photo %}
+                        <img src="{{ ad.username.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ ad.username }}</span>
+                        <span class="info">Language: {{ ad.username.language }}</span>
+                        <span class="info">Gender: {{ ad.username.gender }}</span>
+                    </div>
+                </div>
+                    </a>
+            </div>
+
+
+            <div class="two"><h1 style="color:white; font-family: 'Rubik';">{{ ad.title }}</h1></div>
+        </div>
+        <p style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ ad.description }} </p>
+          <div class="bottom">
+              <a href="{{ ad.get_edit_url }}">
+              <button class="button-17" role="button">Edit</button>
+              </a>
+              <a href="{{ ad.get_delete_url }}">
+                  <button class="button-18" role="button" type="submit">Delete</button>
+              </a>
+              <p style="color: grey">Date of publishing: {{ ad.dat_of_pub }}</p>
+
+          </div>
+    </div>
+
+{% endfor %}
+
+<div class="center" style="background-color: #0a94fc;">
+<div class="pagination">
+<!--    {% if page_obj.has_previous %}-->
+<!--        <a href="?page=1">&laquo; first</a>-->
+<!--    <a href="?page={{ page_obj.previous_page_number }}">previous</a>-->
+<!--    {% endif %}-->
+
+<!--    <span class="current">-->
+<!--            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.-->
+<!--        </span>-->
+
+<!--        {% if page_obj.has_next %}-->
+<!--            <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>-->
+<!--            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>-->
+<!--        {% endif %}-->
+{% for p in paginator.page_range %}
+    {% if page_obj.number == p  %}
+        <a href="?page={{ p }}" class="active">{{ p }}</a>
+
+    {% else %}
+        <a href="?page={{ p }}">{{ p }}</a>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+</div>
+    </div>
+{% endblock %}

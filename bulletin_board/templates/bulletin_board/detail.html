@@ -1,0 +1,44 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+
+{% block content %}
+
+<!-- <h1 style="color: white ">{{ advert.description }}</h1> -->
+      <div class="center" style="margin-top: 25px">
+        <div id="inline">
+
+            <div class="one">
+ <a             href="{{ ad.username.get_absolute_url }}" style="text-decoration: none;">                <div class="card" >
+                    <div class="image">
+                        {% if ad.username.photo %}
+                        <img src="{{ ad.username.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text">
+                        <span class="name" style="color:white;">{{ ad.username }}</span>
+                        <span class="info">Language: {{ ad.username.language }}</span>
+                        <span class="info">Gender: {{ ad.username.gender }}</span>
+                    </div>
+                </div>
+                    </a>
+            </div>
+
+
+            <div class="two"><h1 style="color:white;">{{ ad.title }}</h1></div>
+        </div>
+        <div class="bottom">
+            <p style="color:white; font-family: 'Rubik'; ">&emsp; &emsp; &emsp;{{ ad.description }} </p>
+            <button class="button-17" role="button">Contact</button>
+            <a href="{% url 'index' %}">
+            <button class="button-18" role="button">Home page</button>
+            </a>
+                <p style="color: grey">Date of publishing: {{ ad.dat_of_pub }}</p>
+        </div>
+    </div>
+
+
+
+
+    {% endblock %}

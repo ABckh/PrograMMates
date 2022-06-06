@@ -1,0 +1,34 @@
+{% extends 'bulletin_board/index.html' %}
+
+{% block content %}
+
+<div class="center">
+        <input id="message-input" type="text" size="100"><br>
+        <input id="btn-submit" type="button" value="Send">
+        <div id="chat">
+
+        </div>
+
+</div>
+<script>
+let chat = document.querySelector("#chat")
+let input = document.querySelector("#message-input")
+let btnSubmit = document.querySelector("#btn-submit")
+
+const webSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+
+webSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    chat.innerHTML += '<div class="msg">' + data.message + '</div>'
+};
+
+
+btnSubmit.addEventListener("click", () => {
+    message = input.value;
+    webSocket.send(JSON.stringify({
+        'message': message
+    }));
+    input.value = '';
+})
+</script>
+{% endblock %}

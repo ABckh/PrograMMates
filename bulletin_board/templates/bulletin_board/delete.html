@@ -1,0 +1,52 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+{% block content %}
+
+{% if message %}
+<div class="center" style="color: white">
+    <h1>{{ message }}</h1>
+</div>
+{% else %}
+
+{% csrf_token %}
+
+<div class="center" style="margin-top: 25px;">
+        <div id="inline">
+
+         <div class="one">
+                <div class="card" >
+                    <div class="image">
+                        {% if ad.username.photo %}
+                        <img src="{{ ad.username.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name">{{ ad.username }}</span>
+                        <span class="info">Language: {{ ad.username.language }}</span>
+                        <span class="info">Gender: {{ ad.username.gender }}</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="two"><h1 style="font-family: 'Rubik';">{{ ad.title }}</h1></div>
+        </div>
+        <div class="bottom">
+            <p style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ ad.description }} </p>
+            <p style="color: grey">Date of publishing: {{ ad.dat_of_pub }}</p>
+        </div>
+    </div>
+
+<div class="center" style="margin-top: 25px;">
+<form method="post">
+    {% csrf_token %}
+        <h3>    Are you sure you want to delete this advert ?</h3>
+        {{ form }}
+        <input type="submit" class="button-17" value="Confirm">
+        <input type="button" class="button-18" value="Cancel" onclick="window.location.href={% url 'adverts' %}">
+</form>
+</div>
+{% endif %}
+{% endblock %}

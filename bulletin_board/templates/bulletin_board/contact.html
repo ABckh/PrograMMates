@@ -1,0 +1,36 @@
+{% extends 'bulletin_board/index.html' %}
+
+
+{% block content %}
+
+
+{% if message %}
+<div class="center">
+    <h1>{{ message }}</h1>
+    <p>{{ message_2 }}</p>
+</div>
+{% else %}
+
+
+{% if user.is_authenticated %}
+<div class="center">
+    <div class="two">
+<h1>What chat room would you like to enter?</h1><br>
+    <input id="roomname" class="form-input" type="text" size="100"><br>
+    <input id="submit" class="button-17" type="button" value="Enter">
+</div>
+</div>
+<script>
+
+    document.querySelector('#submit').onclick = function(e) {
+        var myRoom = document.querySelector('#roomname').value;
+        window.location.pathname = '/chat/room/' + myRoom + '/';
+    };
+
+
+</script>
+
+{% else %}
+{% endif %}
+{% endif %}
+{% endblock %}
