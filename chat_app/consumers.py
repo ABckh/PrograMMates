@@ -42,7 +42,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         data = json.loads(text_data)
         message = data['message']
         username = data['username']
-        print(username, message)
 
         await self.save_message(username, self.room_group_name, message)
 

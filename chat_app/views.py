@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import ChatModel
 from bulletin_board.models import Users
+from bulletin_board.utils import MENU
 
 
 def chat_page(request, username):
@@ -16,6 +17,7 @@ def chat_page(request, username):
     message_objs = ChatModel.objects.filter(thread_name=thread_name)
     context = {
         'user': user_obj,
-        'messages': message_objs
+        'messages': message_objs,
+        'menu': MENU,
     }
-    return render(request, template_name='chat_app/room.html', context=context )
+    return render(request, template_name='chat_app/chat.html', context=context )

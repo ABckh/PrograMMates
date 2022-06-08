@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel = "icon" href ="https://cdn-icons.flaticon.com/png/512/3829/premium/3829543.png?token=exp=1653829226~hmac=585453ac0ec643637b279e9ef2398dd3" type = "image/x-icon">
-    <link rel="stylesheet" href="{% static 'bulletin_board/css/index.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
     <style type="text/css">
 
 @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
@@ -43,9 +43,7 @@
 
 
 
-
-    {% block content %}
-
-    {% endblock %}
+{% block content %} {% endblock %}
+{% block scripts %} {% endblock %}
 </body>
 </html>
