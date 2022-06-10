@@ -4,7 +4,16 @@
 
 
 {% block content %}
-<div class="center" style="background-color: #0a94fc">
+
+{% if message %}
+<div class="center" style="color: white">
+    <h1>{{ message }}</h1>
+    <p>{{ message_2 }}</p>
+</div>
+{% else %}
+
+
+<div class="center" style="background-color: #0a94fc" id="saved-mssgs">
 <a href="{{ user.get_absolute_url }}" style="text-decoration: none;">
                 <div class="card" >
                     <div class="image">
@@ -51,7 +60,8 @@
     </div>
 {{user.slug|json_script:"json-username"}}
 {{request.user.username|json_script:"json-message-username"}}
+{% endif %}
 {% endblock %}
 {% block scripts %}
-<script src="{% static 'js/chat.js' %}"></script>
+<script src="{% static 'js/chat.js' %}" type="text/javascript"></script>
 {% endblock %}

@@ -15,9 +15,15 @@ def chat_page(request, username):
         thread_name = f'chat_{user_obj.slug}-{request.user.slug}'
 
     message_objs = ChatModel.objects.filter(thread_name=thread_name).select_related('sender')
-    context = {
-        'user': user_obj,
-        'messages': message_objs,
-        'menu': MENU,
-    }
-    return render(request, template_name='chat_app/chat.html', context=context )
+    if username == request.user.username:
+        context = {
+            'menu': MENU,
+            'message': "You can't text yourself"
+        }
+    else:
+        context = {
+            'user': user_obj,
+            'messages': message_objs,
+            'menu': MENU,
+        }
+    return render(request, template_name='chat_app/chat.html', context=context)

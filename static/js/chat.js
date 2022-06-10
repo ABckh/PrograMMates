@@ -2,13 +2,7 @@ const slug = JSON.parse(document.getElementById('json-username').textContent);
 const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
 
 
-function scrollToBottom() {
-    let objDiv = document.getElementById("chat-body");
-    objDiv.scrollTop = objDiv.scrollHeight;
-}
-
-// Add this below the function to trigger the scroll on load.
-scrollToBottom();
+window.scrollTo(0, document.body.scrollHeight);
 
 const socket = new WebSocket(
     'ws://'
@@ -52,8 +46,8 @@ socket.onmessage = function(e){
 
         `
     }
-    scrollToBottom();
-}
+    window.scrollTo(0, document.body.scrollHeight);
+};
 
 document.querySelector('#chat-message-submit').onclick = function(e){
     const message_input = document.querySelector('#message_input');
