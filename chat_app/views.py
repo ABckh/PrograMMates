@@ -14,7 +14,7 @@ def chat_page(request, username):
     else:
         thread_name = f'chat_{user_obj.slug}-{request.user.slug}'
 
-    message_objs = ChatModel.objects.filter(thread_name=thread_name)
+    message_objs = ChatModel.objects.filter(thread_name=thread_name).select_related('sender')
     context = {
         'user': user_obj,
         'messages': message_objs,

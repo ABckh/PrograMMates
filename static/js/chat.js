@@ -1,6 +1,15 @@
 const slug = JSON.parse(document.getElementById('json-username').textContent);
 const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
 
+
+function scrollToBottom() {
+    let objDiv = document.getElementById("chat-body");
+    objDiv.scrollTop = objDiv.scrollHeight;
+}
+
+// Add this below the function to trigger the scroll on load.
+scrollToBottom();
+
 const socket = new WebSocket(
     'ws://'
     + window.location.host
@@ -58,10 +67,3 @@ document.querySelector('#chat-message-submit').onclick = function(e){
     message_input.value = '';
 }
 
-function scrollToBottom() {
-    let objDiv = document.getElementById("chat-body");
-    objDiv.scrollTop = objDiv.scrollHeight;
-}
-
-// Add this below the function to trigger the scroll on load.
-scrollToBottom();
