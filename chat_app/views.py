@@ -1,4 +1,3 @@
-# Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import ChatModel
@@ -6,6 +5,7 @@ from bulletin_board.models import Users
 from bulletin_board.utils import MENU
 
 
+@login_required
 def chat_page(request, username):
     user_obj = Users.objects.get(username=username)
 
@@ -22,7 +22,7 @@ def chat_page(request, username):
         }
     else:
         context = {
-            'user': user_obj,
+            'receiver': user_obj,
             'messages': message_objs,
             'menu': MENU,
         }

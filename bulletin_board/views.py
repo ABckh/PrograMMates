@@ -1,12 +1,11 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
-from django.views.decorators.csrf import csrf_protect
 
 from .forms import *
 from .models import Advert, Users
@@ -84,6 +83,7 @@ class UserProfileView(LoginRequiredMixin, DataMixin, generic.DetailView):
         else:
             c_def = self.get_user_context(title='Profile', message="Oops... You don't have permission for this")
         return dict(list(context.items()) + list(c_def.items()))
+
 
 
 class AboutUserView(DataMixin, generic.DetailView):
@@ -266,17 +266,4 @@ class EditProfile(LoginRequiredMixin, DataMixin, generic.UpdateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-# class ContactUser(DataMixin, generic.FormView):
-#     template_name = 'bulletin_board/contact.html'
-#     context_object_name = 'user'
-#     form_class = ContactUserForm
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         if self.request.user.slug == self.kwargs['user_slug']:
-#             c_def = self.get_user_context(title='Contact', message="You can't text yourself")
-#         else:
-#             c_def = self.get_user_context(title='Contact', user=Users.objects.get(slug=self.kwargs['user_slug']))
-#         return dict(list(context.items()) + list(c_def.items()))
 

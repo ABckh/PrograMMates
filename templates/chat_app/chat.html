@@ -14,18 +14,18 @@
 
 
 <div class="center" style="background-color: #0a94fc" id="saved-mssgs">
-<a href="{{ user.get_absolute_url }}" style="text-decoration: none;">
+<a href="{{ receiver.get_absolute_url }}" style="text-decoration: none;">
                 <div class="card" >
                     <div class="image">
-                        {% if user.photo %}
-                        <img src="{{ user.photo.url }}">
+                        {% if receiver.photo %}
+                        <img src="{{ receiver.photo.url }}">
                         {% endif %}
                     </div>
 
                     <div class="text" >
-                        <span class="name" style="color:white;">{{ user }}</span>
-                        <span class="info">Language: {{ user.language }}</span>
-                        <span class="info">Gender: {{ user.gender }}</span>
+                        <span class="name" style="color:white;">{{ receiver }}</span>
+                        <span class="info">Language: {{ receiver.language }}</span>
+                        <span class="info">Gender: {{ receiver.gender }}</span>
                     </div>
                 </div>
                     </a>

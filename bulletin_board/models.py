@@ -275,9 +275,6 @@ class Users(AbstractBaseUser, PermissionsMixin):
     def get_edit_url(self):
         return reverse('edit_profile', kwargs={'user_slug': self.slug})
 
-    def my_profile_url(self):
-        return reverse('profile', kwargs={'user_slug': self.slug})
-
     # def get_contact_url(self):
     #     return reverse('contact', kwargs={'user_slug': self.slug})
 
