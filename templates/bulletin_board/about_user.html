@@ -23,7 +23,7 @@
         </div>
         <div class="bottom">
             <h4 style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ user.information }} </h4>
-            <a href="{{ user.get_contact_url }}">
+            <a href="{% url 'chat' username=user.username %}">
             <button class="button-17" role="button">Contact</button>
                 </a>
               <a href="{% url 'index' %}">

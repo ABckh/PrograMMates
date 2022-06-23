@@ -85,7 +85,6 @@ class UserProfileView(LoginRequiredMixin, DataMixin, generic.DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-
 class AboutUserView(DataMixin, generic.DetailView):
     model = Users
     template_name = "bulletin_board/about_user.html"
