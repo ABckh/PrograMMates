@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+<div class="center">
+<div class="one">
+    <div class="card" >
+                    <div class="image">
+                        {% if ad.username.photo %}
+                        <img src="{{ ad.username.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ ad.username }}</span>
+                        <span class="info">Language: {{ ad.username.language }}</span>
+                        <span class="info">Gender: {{ ad.username.gender }}</span>
+                    </div>
+                </div>
+</div>
+    <p style="color:white;  font-family: 'Rubik';">&emsp; &emsp; &emsp;{{ ad.description }} </p>
+</div>
+
+<div class="center">
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete this advert ?</p>
+    {{ form }}
+    <input type="submit" class="button-17" value="Confirm">
+</form>
+</div>
+{% endblock %}
