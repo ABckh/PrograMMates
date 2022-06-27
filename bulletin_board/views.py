@@ -212,18 +212,13 @@ class DeleteAdvert(LoginRequiredMixin, DataMixin, generic.DeleteView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        adverts = Advert.objects.all().select_related('username')
-        if self.request.user == adverts.get(slug=self.kwargs['ad_slug']).username:
+        adverts = Advert.objects.all().filter(slug=self.kwargs['ad_slug']).select_related('username')
+        # if self.request.user == adverts.get(slug=self.kwargs['ad_slug']).username:
+        if self.request.user in [x.username for x in adverts]:
             c_def = self.get_user_context(title='My adverts')
         else:
             c_def = self.get_user_context(title='My adverts', message="Oops... You don't have permission to this page")
         return dict(list(context.items()) + list(c_def.items()))
-    #
-    # def get_context_object_name(self, obj):
-    #     all_adverts = Advert.objects.all().select_related('username')
-    #     ad = all_adverts.get(username=self.request.user)
-    #     print(str(ad))
-    #     return 'advert'
 
 
 class EditAdvert(LoginRequiredMixin, DataMixin, generic.UpdateView):
@@ -237,7 +232,6 @@ class EditAdvert(LoginRequiredMixin, DataMixin, generic.UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # if self.kwargs['ad_slug']:
         adverts = Advert.objects.all().select_related('username')
         if self.request.user == adverts.get(slug=self.kwargs['ad_slug']).username:
             c_def = self.get_user_context(title='Edit')
