@@ -12,6 +12,31 @@
 </div>
 {% else %}
 
+<div class="right-sidebar">
+<h1 style="margin-left: 30%">Chats</h1>
+{% for user in users %}
+        <div class="center" style="width: 100%; background-color:#0a94fc; box-shadow: none;">
+        <div id="inline"
+         <div class="one">
+                <a href="{% url 'chat' username=user %}" style="text-decoration: none;">
+                <div class="card"  style="width: 100%; background-color:#0a94fc; box-shadow: none">
+                    <div class="image">
+                        {% if user.photo %}
+                        <img src="{{ user.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ user }}</span>
+                        <span class="info" style="color:white;">Language: {{ user.language }}</span>
+                        <span class="info" style="color:white;">Gender: {{ user.gender }}</span>
+                    </div>
+                </div>
+                    </a>
+            </div>
+        </div>
+{% endfor %}
+</div>
 
 <div class="center" style="background-color: #0a94fc" id="saved-mssgs">
 <a href="{{ receiver.get_absolute_url }}" style="text-decoration: none;">

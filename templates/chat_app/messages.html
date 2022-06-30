@@ -11,14 +11,14 @@
 {% else %}
 
 
-
+<div class="right-sidebar">
+    <h1 style="margin-left: 30%">Chats</h1>
 {% for user in users %}
-
-<div class="center" style="margin-top: 25px;">
-    <div id="inline"
+        <div class="center" style="width: 100%; background-color:#0a94fc; box-shadow: none;">
+        <div id="inline"
          <div class="one">
-                <a href="{{ user.get_absolute_url }}" style="text-decoration: none;">
-                <div class="card" >
+                <a href="{% url 'chat' username=user %}" style="text-decoration: none;">
+                <div class="card"  style="width: 100%; background-color:#0a94fc; box-shadow: none">
                     <div class="image">
                         {% if user.photo %}
                         <img src="{{ user.photo.url }}">
@@ -27,18 +27,15 @@
 
                     <div class="text" >
                         <span class="name" style="color:white;">{{ user }}</span>
-                        <span class="info">Language: {{ user.language }}</span>
-                        <span class="info">Gender: {{ user.gender }}</span>
+                        <span class="info" style="color:white;">Language: {{ user.language }}</span>
+                        <span class="info" style="color:white;">Gender: {{ user.gender }}</span>
                     </div>
                 </div>
                     </a>
             </div>
-    <a href="{% url 'chat' username=user %}">
-        <button class="button-17" role="button" >Contact</button>
-    </a>
+        </div>
+{% endfor %}
 </div>
 
-
-{% endfor %}
 {% endif %}
 {% endblock %}
