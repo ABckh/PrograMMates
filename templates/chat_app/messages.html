@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if message %}
+<div class="center" style="color: white">
+    <h1>{{ message }}</h1>
+    <p>{{ message_2 }}</p>
+</div>
+{% else %}
+
+
+
+{% for user in users %}
+
+<div class="center" style="margin-top: 25px;">
+    <div id="inline"
+         <div class="one">
+                <a href="{{ user.get_absolute_url }}" style="text-decoration: none;">
+                <div class="card" >
+                    <div class="image">
+                        {% if user.photo %}
+                        <img src="{{ user.photo.url }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="text" >
+                        <span class="name" style="color:white;">{{ user }}</span>
+                        <span class="info">Language: {{ user.language }}</span>
+                        <span class="info">Gender: {{ user.gender }}</span>
+                    </div>
+                </div>
+                    </a>
+            </div>
+    <a href="{% url 'chat' username=user %}">
+        <button class="button-17" role="button" >Contact</button>
+    </a>
+</div>
+
+
+{% endfor %}
+{% endif %}
+{% endblock %}

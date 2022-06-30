@@ -5,6 +5,7 @@ MENU = [
     {'title': 'Add an advert', 'url_name': 'adding'},
     {'title': 'My profile', 'url_name': 'profile'},
     {'title': 'My adverts', 'url_name': 'adverts'},
+    {'title': 'My messages', 'url_name': 'messages'},
     {'title': 'Contact service', 'url_name': 'service'},
 ]
 
