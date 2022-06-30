@@ -28,19 +28,28 @@ def chat_page(request, username):
         }
     return render(request, template_name='chat_app/chat.html', context=context)
 
-
+# Duplicated SQL queries
 def all_messages(request):
     messages = ChatModel.objects.filter(thread_name__icontains=request.user)
     list_with_names = []
     for i in messages:
-        user = [x for x in i.thread_name.split('-') if x not in ('chat', request.user.username)]
-        if Users.objects.get(username__icontains=user[0]) not in list_with_names:
-            if user[0] != request.user:
-                print(user[0])
-                user_obj = Users.objects.get(username__icontains=user[0])
+        user = [x for x in i.thread_name.split('-') if x not in ('chat', str(request.user).lower())]
+        user_obj = Users.objects.get(username__icontains=user[0])
+        if user_obj not in list_with_names:
+            if user_obj != request.user:
                 list_with_names.append(user_obj)
-    context = {
-        'menu': MENU,
-        'users': list_with_names,
-    }
+    if len(list_with_names) == 0:
+        context = {
+            'menu': MENU,
+            'users': list_with_names,
+            'message': 'There are no messages yet...  Text someone!',
+            'title': 'My messages'
+        }
+    else:
+        context = {
+            'menu': MENU,
+            'users': list_with_names,
+            'title': 'My messages'
+        }
+
     return render(request, template_name='chat_app/messages.html', context=context)
