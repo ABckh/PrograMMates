@@ -12,8 +12,7 @@ def searching_people_in_thread(request):
         user = [x for x in i.thread_name.split('-') if x not in ('chat', str(request.user).lower())]
         user_obj = Users.objects.get(username__icontains=user[0])
         if user_obj not in list_with_names:
-            if user_obj != request.user:
-                list_with_names.append(user_obj)
+            list_with_names.append(user_obj)
     return list_with_names
 
 
@@ -60,5 +59,4 @@ def all_messages(request):
             'users': list_with_names,
             'title': 'My messages'
         }
-
     return render(request, template_name='chat_app/messages.html', context=context)
