@@ -6,8 +6,9 @@ You can post an advert with description and programming language as a title and 
 <img width="1499" alt="Screenshot 2022-11-07 at 23 41 15" src="https://user-images.githubusercontent.com/88387714/201205084-22115be0-da18-44d3-b310-4666347a3d42.png">
 
 * Everebody can use filters by programming language, language and words which adverts contain
-<img width="1506" alt="Screenshot 2022-11-07 at 23 41 56" src="https://user-images.githubusercontent.com/88387714/201205<img width="1508" alt="Screenshot 2022-11-07 at 23 42 19" src="https://user-images.githubusercontent.com/88387714/201205629-694eb3fd-693f-495a-a0ec-0f56c8db34cb.png">
-325-ba0163a1-5c7b-4486-9b61-86e048ef5f3a.png">
+<img width="1506" alt="Screenshot 2022-11-07 at 23 41 56" src="https://user-images.githubusercontent.com/88387714/201207588-f0792725-c32d-4ffa-89f1-b7978ae6ac4a.png">
+<img width="1508" alt="Screenshot 2022-11-07 at 23 42 19" src="https://user-images.githubusercontent.com/88387714/201207615-5bb671e7-27af-4e1d-8ce2-bb91fa16bafc.png">
+
 
 * You can click to the icon of each user and see user's info
 <img width="1507" alt="Screenshot 2022-11-07 at 23 53 17" src="https://user-images.githubusercontent.com/88387714/201205675-26452bfd-ebe6-4f6d-bb8e-e2db23203034.png">
