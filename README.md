@@ -50,6 +50,10 @@ You can post an advert with description and programming language as a title and 
 * ### Chat pages after refreshing
 <img width="1512" alt="Screenshot 2022-11-11 at 13 41 31" src="https://user-images.githubusercontent.com/88387714/201334226-6cc9fc9e-b272-4a76-b7d7-de655f127083.png">
 
+* ### This is "My messages" field:
+<img width="1508" alt="Screenshot 2022-11-11 at 20 51 01" src="https://user-images.githubusercontent.com/88387714/201413105-23bc0ba7-f81b-438b-a5e3-bf8d6fc4bf11.png">
+<img width="1505" alt="Screenshot 2022-11-11 at 20 51 10" src="https://user-images.githubusercontent.com/88387714/201413118-bf253b49-46ac-4397-bcdb-09bc69f55124.png">
+
 # Thank you for your time!
 
 
